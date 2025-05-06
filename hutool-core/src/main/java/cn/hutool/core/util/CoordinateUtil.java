@@ -160,6 +160,20 @@ public class CoordinateUtil {
 		y = 180 / Math.PI * (2 * Math.atan(Math.exp(y * Math.PI / 180)) - Math.PI / 2);
 		return new Coordinate(x, y);
 	}
+
+    /**
+     * 基于Haversine公式计算两点间球面距离（单位：米）
+     * @param coord1 坐标1
+     * @param coord2 坐标2
+     * @return 距离（米）
+     */
+    public static double calculateDistance(Coordinate coord1, Coordinate coord2) {
+        double radLat1 = Math.toRadians(coord1.lat);
+        double radLat2 = Math.toRadians(coord2.lat);
+        double deltaLon = Math.toRadians(coord2.lng - coord1.lng);
+        return 2 * RADIUS * Math.asin(Math.sqrt(Math.pow(Math.sin((radLat1 - radLat2)/2), 2)
+                + Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(deltaLon/2), 2)));
+    }
 	
 	//----------------------------------------------------------------------------------- Private methods begin
 

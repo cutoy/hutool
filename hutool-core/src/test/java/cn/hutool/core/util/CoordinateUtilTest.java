@@ -1,7 +1,8 @@
 package cn.hutool.core.util;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * 坐标转换工具类单元测试<br>
@@ -62,4 +63,11 @@ public class CoordinateUtilTest {
 		assertEquals(116.39762729119315D, coordinate.getLng(), 0);
 		assertEquals(39.90865673957631D, coordinate.getLat(), 0);
 	}
+
+    @Test
+    public void calculateDistanceTest(){
+        double distance = CoordinateUtil.calculateDistance(new CoordinateUtil.Coordinate(121.3754, 35.7089),
+                new CoordinateUtil.Coordinate(120.3754, 34.7089));
+        assertEquals(143752.56223806925, distance, 0);
+    }
 }
